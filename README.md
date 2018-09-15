@@ -46,3 +46,13 @@ forever list
 ブラウザから http://localhost:8080/ にアクセスすると表示される
 
 トップページは `html/public/index.html`
+
+#### サンプルアプリで動作確認
+
+```bash
+cd public
+bower install --allow-root
+node public/js/websocket.js
+```
+
+ブラウザから http://localhost:8080/ にアクセスすると、コンソールに `Socket 接続成功` と表示される
