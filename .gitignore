@@ -10,9 +10,9 @@ ehthumbs.db
 Thumbs.db
 
 .env
-html/*
-!package.json
-!server.js
-mysql/data/*
 private_files/*
+html/node_modules/*
+html/public/files/*
+html/public/vendor/*
+package-lock.json
 !.gitkeep
