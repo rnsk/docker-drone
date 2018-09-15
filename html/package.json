@@ -1,0 +1,11 @@
+{
+  "name": "drone",
+  "version": "1.0.0",
+  "description": "Controlling Parrot Jumping Sumo.",
+  "author": "rnsk",
+  "license": "MIT",
+  "dependencies": {
+    "net": "^1.0.2",
+    "node-sumo": "git+https://github.com/forgeByAcision/node-sumo.git"
+  }
+}

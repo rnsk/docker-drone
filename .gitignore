@@ -11,6 +11,7 @@ Thumbs.db
 
 .env
 html/*
+!package.json
 mysql/data/*
 private_files/*
 !.gitkeep
