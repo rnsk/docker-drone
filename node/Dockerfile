@@ -9,7 +9,7 @@ RUN apk --update add \
  && apk del build-base \
  && rm -rf /var/cache/apk/*
 
-RUN npm install -g --no-optional forever
+RUN npm install -g forever
 
 # ポートを開放
 EXPOSE 3000 5005
