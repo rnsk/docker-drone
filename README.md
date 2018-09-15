@@ -1,8 +1,7 @@
 ### 使い方
 
-```bash
-$ cd ~/workspace
-$ git clone git@bitbucket.org:rnsk/docker_drone.git プロジェクト名
+```shell-session
+$ git clone https://github.com/rnsk/docker-drone.git プロジェクト名
 $ cd プロジェクト名
 $ cp .env.default .env
 $ vi .env
@@ -11,34 +10,40 @@ $ docker-compose up -d
 
 #### コンテナ確認
 
-```bash
+```shell-session
 $ docker-compose ps
 ```
 
 #### コンテナの中に入る
 
-```bash
+```shell-session
 $ docker exec -it コンテナ名 /bin/sh
 /html #
 ```
 
 #### 必要なパッケージをインストール
 
-```bash
-npm install
+```shell-session
+# npm install
 ```
 
 #### Webサーバー起動
 
-```bash
-forever start server.js
-
-# 停止
-forever stop server.js
-# 再起動
-forever restart server.js
-# 実行中のスクリプト一覧
-forever list
+##### 起動
+```shell-session
+# forever start server.js
+```
+##### 停止
+```shell-session
+# forever stop server.js
+```
+##### 再起動
+```shell-session
+# forever restart server.js
+```
+##### 実行中のスクリプト一覧
+```shell-session
+# forever list
 ```
 
 #### 表示確認
@@ -49,10 +54,10 @@ forever list
 
 #### サンプルアプリで動作確認
 
-```bash
-cd public
-bower install --allow-root
-node public/js/websocket.js
+```shell-session
+# cd public
+# bower install --allow-root
+# node public/js/websocket.js
 ```
 
 ブラウザから http://localhost:8080/ にアクセスすると、コンソールに `Socket 接続成功` と表示される
