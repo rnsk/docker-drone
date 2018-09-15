@@ -1,0 +1,11 @@
+version: '3'
+services:
+  node:
+    build: ./node
+    container_name: ${NODE_CONTAINER_NAME}
+    tty: true
+    ports:
+      - "8080:3000"
+      - "5005:5005"
+    volumes:
+      - ./html:/html
