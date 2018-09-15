@@ -9,26 +9,26 @@ $ vi .env
 $ docker-compose up -d
 ```
 
-コンテナ確認
+#### コンテナ確認
 
 ```bash
 $ docker-compose ps
 ```
 
-コンテナの中に入る
+#### コンテナの中に入る
 
 ```bash
 $ docker exec -it コンテナ名 /bin/sh
 /html #
 ```
 
-必要なパッケージをインストール
+#### 必要なパッケージをインストール
 
 ```bash
 npm install
 ```
 
-Webサーバー起動
+#### Webサーバー起動
 
 ```bash
 forever start server.js
@@ -41,6 +41,8 @@ forever restart server.js
 forever list
 ```
 
+#### 表示確認
+
 ブラウザから http://localhost:8080/ にアクセスすると表示される
 
-トップページは `public/index.html`
+トップページは `html/public/index.html`
