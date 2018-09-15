@@ -1,0 +1,21 @@
+{
+  "name": "drone",
+  "description": "Controlling Parrot Jumping Sumo.",
+  "main": "",
+  "authors": [
+    "rnsk"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "3",
+    "bootstrap": "4"
+  }
+}

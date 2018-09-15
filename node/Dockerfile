@@ -9,7 +9,9 @@ RUN apk --update add \
  && apk del build-base \
  && rm -rf /var/cache/apk/*
 
-RUN npm install -g forever
+RUN npm install -g \
+  forever \
+  bower
 
 # ポートを開放
 EXPOSE 3000 5005
