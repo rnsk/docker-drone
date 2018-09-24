@@ -5,8 +5,9 @@
   "author": "rnsk",
   "license": "MIT",
   "dependencies": {
+    "html5sortable": "^0.9.4",
     "net": "^1.0.2",
-    "ws": "^6.0.0",
-    "node-sumo": "git+https://github.com/forgeByAcision/node-sumo.git"
+    "node-sumo": "git+https://github.com/forgeByAcision/node-sumo.git",
+    "ws": "^6.0.0"
   }
 }
