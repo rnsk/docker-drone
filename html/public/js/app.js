@@ -6,44 +6,73 @@
  * @link        https://rnsk.net/
  */
 
-var connection,
-    connectionUrl = 'ws://localhost:5005',
+var ws = null,
+    wsUrl = 'ws://localhost:5005',
     audioElem,
     audioFile = '../files/audio.mp3';
 
 /*---- WebSocket ----*/
-connection = new WebSocket(connectionUrl);
+ws = new WebSocket(wsUrl);
 
-// 接続
-connection.addEventListener('open', function (e) {
+// 接続開始時のコールバック
+ws.onopen = function () {
     console.log('Socket 接続成功');
-});
+    // メッセージ送信
+    ws.send('hello');
+    // コントローラー表示
+    showController();
+};
 
-// サーバーからデータを受け取る
-connection.addEventListener('message', function (e) {
-    console.log(e.data);
-});
+// 接続切断時のコールバック
+ws.onclose = function (event) {
+    // 再接続ボタンを表示する
+};
 
-window.addEventListener('DOMContentLoaded', function (e) {
-    // サーバーにデータを送る
+// エラー発生時のコールバック
+ws.onerror = function (error) {
+};
+
+// メッセージ受け取り時のコールバック
+ws.onmessage = function (message) {
+    console.log(message.data);
+    // 指示完了の信号を受け取る
+};
+
+var showController = function () {
+    document.getElementById('controller').style.display = 'block';
+};
+
+var controller = function () {
     document.getElementById('submit').addEventListener('click', function (e) {
-        connection.send('hello');
+        ws.send('hello');
     });
-});
+};
 
 /*---- 音源再生 ----*/
 audioElem = new Audio();
 audioElem.src = audioFile;
 
 document.getElementById('play').addEventListener('click', function (e) {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        // 再生時の処理
+        ws.send('play');
+    };
     audioElem.play();
 });
 
 document.getElementById('pause').addEventListener('click', function (e) {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        // 一時停止時の処理
+        ws.send('pause');
+    };
     audioElem.pause();
 });
 
 document.getElementById('stop').addEventListener('click', function (e) {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+        // 停止時の処理
+        ws.send('stop');
+    };
     audioElem.pause();
     audioElem.currentTime = 0;
 });
