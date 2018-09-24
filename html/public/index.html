@@ -8,31 +8,98 @@
     <meta name="robots" content="noindex,nofollow">
     <meta name="copyright" content="@rnsk">
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-flatly.min.css">
     <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
-    <div class="container-fluid">
-        <h1>Jumping Sumo</h1>
-        <p class="drone-status">
-            <span class="badge badge-success">接続</span>
-            <span class="badge badge-secondary">未接続</span>
-        </p>
-        <div id="controller" style="display: none;">
-            <input type="button" id="sumoForward" class="btn btn-light" value="前進">
-            <input type="button" id="sumoBackward" class="btn btn-primary" value="後退">
-            <input type="button" id="sumoRight" class="btn btn-warning" value="右回り">
-            <input type="button" id="sumoLeft" class="btn btn-secondary" value="左回り">
-            <input type="button" id="sumoStop" class="btn btn-secondary" value="停止">
-            <input type="button" id="sumoSpin" class="btn btn-secondary" value="スピン">
-            <hr>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <span class="navbar-brand mb-0 h1">Jumping Sumo</span>
+        </nav>
+    </header>
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="column column-block">
+                    <div class="drone-status">
+                        <span class="badge badge-pill badge-success">接続</span>
+                        <span class="badge badge-pill badge-secondary">未接続</span>
+                    </div>
+                    <div class="drone-image">
+                        <img src="img/sumo.jpg"  class="img-fluid mx-auto d-block">
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link active" data-toggle="tab">基本</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" class="nav-link" data-toggle="tab">動き</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade show active my-2 js-sortable-copy sortable">
+                            <div class="alert alert-info form-inline">
+                                前進 <input type="number" class="form-control form-control-sm ml-2 w-25">
+                            </div>
+                            <div class="alert alert-info form-inline">
+                                後退 <input type="number" class="form-control form-control-sm ml-2 w-25">
+                            </div>
+                            <div class="alert alert-info form-inline">
+                                右回り <input type="number" class="form-control form-control-sm ml-2 w-25">
+                            </div>
+                            <div class="alert alert-info form-inline">
+                                左回り <input type="number" class="form-control form-control-sm ml-2 w-25">
+                            </div>
+                            <div class="alert alert-info">
+                                停止
+                            </div>
+                        </div>
+                        <div id="profile" class="tab-pane fade my-2">
+                            <div class="alert alert-warning">
+                                Some quick example
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-5">
+                <div class="column column-stage js-sortable-copy-target sortable">
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="column column-view">
+                    <div class="actions">
+                        <div class="btn-group btn-group-lg d-flex">
+                            <button type="button" class="btn btn-primary w-100">START</button>
+                            <button type="button" class="btn btn-secondary w-100">STOP</button>
+                        </div>
+                        <form class="my-5">
+                            <div class="form-group">
+                                <label for="audioFile">音源ファイル</label>
+                                <input type="file" id="audioFile" class="form-control-file">
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="loop">
+                                <label class="custom-control-label" for="loop">繰り返し再生する</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <input type="button" id="play" class="btn btn-primary" value="再生">
-        <input type="button" id="pause" class="btn btn-warning" value="一時停止">
-        <input type="button" id="stop" class="btn btn-secondary" value="停止">
-    </div>
+    </main>
+    <footer class="footer bg-secondary">
+        <div class="container-fluid">
+            <span class="text-light">Place sticky footer content here.</span>
+        </div>
+    </footer>
 
     <script src="vendor/jquery/dist/jquery.min.js"></script>
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/html5sortable/dist/html5sortable.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

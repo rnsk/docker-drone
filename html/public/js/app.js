@@ -76,3 +76,16 @@ document.getElementById('stop').addEventListener('click', function (e) {
     audioElem.pause();
     audioElem.currentTime = 0;
 });
+
+/*---- 並び替え ----*/
+sortable('.js-sortable-copy', {
+    forcePlaceholderSize: true,
+    copy: true,
+    acceptFrom: false,
+    placeholderClass: 'mb1 bg-navy border border-yellow',
+});
+sortable('.js-sortable-copy-target', {
+    forcePlaceholderSize: true,
+    acceptFrom: '.js-sortable-copy,.js-sortable-copy-target',
+    placeholderClass: 'mb1 border border-maroon',
+});

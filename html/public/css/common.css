@@ -6,3 +6,55 @@
  * @author      Yoshika (@rnsk)
  * @link        https://rnsk.net/
  */
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container-fluid {
+    padding: 70px 15px 0;
+}
+
+.footer > .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Column styles */
+.column {
+}
+
+.column-block {
+    padding: 20px;
+}
+
+.column-stage {
+    background-color: #efefef;
+    padding: 20px;
+    height: calc(100vh - 130px);
+}
+
+.column-view .actions {
+    padding: 20px;
+}
