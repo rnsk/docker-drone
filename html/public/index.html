@@ -13,7 +13,19 @@
 <body>
     <div class="container-fluid">
         <h1>Jumping Sumo</h1>
-        <input type="button" id="submit" class="btn btn-light" value="送信">
+        <p class="drone-status">
+            <span class="badge badge-success">接続</span>
+            <span class="badge badge-secondary">未接続</span>
+        </p>
+        <div id="controller" style="display: none;">
+            <input type="button" id="sumoForward" class="btn btn-light" value="前進">
+            <input type="button" id="sumoBackward" class="btn btn-primary" value="後退">
+            <input type="button" id="sumoRight" class="btn btn-warning" value="右回り">
+            <input type="button" id="sumoLeft" class="btn btn-secondary" value="左回り">
+            <input type="button" id="sumoStop" class="btn btn-secondary" value="停止">
+            <input type="button" id="sumoSpin" class="btn btn-secondary" value="スピン">
+            <hr>
+        </div>
         <input type="button" id="play" class="btn btn-primary" value="再生">
         <input type="button" id="pause" class="btn btn-warning" value="一時停止">
         <input type="button" id="stop" class="btn btn-secondary" value="停止">
