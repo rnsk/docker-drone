@@ -8,7 +8,8 @@
 
 var ws = null,
     wsUrl = 'ws://localhost:5005',
-    audioObj = new Audio();
+    audioObj = new Audio(),
+    actions = new Array();
 
 /*---- WebSocket ----*/
 ws = new WebSocket(wsUrl);
@@ -35,12 +36,18 @@ ws.onerror = function (error) {
 // メッセージ受け取り時のコールバック
 ws.onmessage = function (message) {
     switch (message.data) {
+        case 'ready':
+            // Sumo 準備完了時
+            break;
         case 'start':
+            // 開始時
+            generateAction();
             if (audioObj.readyState === 4) {
                 audioObj.play();
             }
             break;
         case 'stop':
+            // 停止時
             audioObj.pause();
             audioObj.currentTime = 0;
             break;
@@ -50,13 +57,13 @@ ws.onmessage = function (message) {
 };
 
 document.getElementById('start').addEventListener('click', function (e) {
+    generateAction();
+    console.log(actions);
     if (ws && ws.readyState === WebSocket.OPEN) {
         // 再生時の処理
         ws.send(JSON.stringify({
             type: 'start',
-            data: {
-                text: 'data'
-            }
+            data: actions
         }));
     }
 });
@@ -92,15 +99,32 @@ document.getElementById('audioClear').addEventListener('click', function (e) {
     e.preventDefault();
 }, false);
 
-/*---- 並び替え ----*/
+/*---- ブロック ----*/
 sortable('.js-sortable-copy', {
     forcePlaceholderSize: true,
     copy: true,
     acceptFrom: false,
     placeholderClass: 'mb1 bg-navy border border-yellow',
 });
+
 sortable('.js-sortable-copy-target', {
     forcePlaceholderSize: true,
     acceptFrom: '.js-sortable-copy,.js-sortable-copy-target',
     placeholderClass: 'mb1 border border-maroon',
 });
+
+var generateAction = function () {
+    actions = [];
+    var blocks = sortable('.js-sortable-copy-target', 'serialize');
+    var items = blocks[0].items;
+    for (let key of Object.keys(items)) {
+        var name = ($(items[key].node).data('action').length) ? $(items[key].node).data('action') : '';
+        if (name != '') {
+            var action = {
+                name: name,
+                param: ($(items[key].node).children('input.param').length) ? $(items[key].node).children('input.param').val() : ''
+            };
+            actions.push(action);
+        }
+    }
+};
