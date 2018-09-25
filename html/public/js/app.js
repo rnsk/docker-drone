@@ -40,7 +40,9 @@ document.getElementById('start').addEventListener('click', function (e) {
         // 再生時の処理
         ws.send('play');
     }
-    audioObj.play();
+    if (audio.readyState === 4) {
+        audioObj.play();
+    }
 });
 
 document.getElementById('stop').addEventListener('click', function (e) {
@@ -60,6 +62,7 @@ audioFile.addEventListener('change', function () {
     var reader = new FileReader();
     reader.onload = function(e) {
         audioObj.src = this.result;
+        audioObj.load();
         // audioObj.controls = true;
         // audioObj.play();
     };
