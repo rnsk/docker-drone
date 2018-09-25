@@ -17,7 +17,10 @@ ws = new WebSocket(wsUrl);
 ws.onopen = function () {
     console.log('Socket 接続成功');
     // メッセージ送信
-    ws.send('hello');
+    ws.send(JSON.stringify({
+        type: 'message',
+        data: 'hello'
+    }));
 };
 
 // 接続切断時のコールバック
@@ -31,27 +34,40 @@ ws.onerror = function (error) {
 
 // メッセージ受け取り時のコールバック
 ws.onmessage = function (message) {
-    console.log(message.data);
-    // 指示完了の信号を受け取る
+    switch (message.data) {
+        case 'start':
+            if (audioObj.readyState === 4) {
+                audioObj.play();
+            }
+            break;
+        case 'stop':
+            audioObj.pause();
+            audioObj.currentTime = 0;
+            break;
+        default:
+            console.log(message.data);
+    }
 };
 
 document.getElementById('start').addEventListener('click', function (e) {
     if (ws && ws.readyState === WebSocket.OPEN) {
         // 再生時の処理
-        ws.send('play');
-    }
-    if (audio.readyState === 4) {
-        audioObj.play();
+        ws.send(JSON.stringify({
+            type: 'start',
+            data: {
+                text: 'data'
+            }
+        }));
     }
 });
 
 document.getElementById('stop').addEventListener('click', function (e) {
     if (ws && ws.readyState === WebSocket.OPEN) {
         // 停止時の処理
-        ws.send('stop');
+        ws.send(JSON.stringify({
+            type: 'stop'
+        }));
     }
-    audioObj.pause();
-    audioObj.currentTime = 0;
 });
 
 /*---- 音源再生 ----*/
