@@ -18,8 +18,6 @@ ws.onopen = function () {
     console.log('Socket 接続成功');
     // メッセージ送信
     ws.send('hello');
-    // コントローラー表示
-    showController();
 };
 
 // 接続切断時のコールバック
