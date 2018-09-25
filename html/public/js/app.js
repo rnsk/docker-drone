@@ -66,6 +66,11 @@ audioFile.addEventListener('change', function () {
     reader.readAsDataURL(this.files[0]);
 }, true);
 
+document.getElementById('audioClear').addEventListener('click', function (e) {
+    document.getElementById('audioFile').value = '';
+    e.preventDefault();
+}, false);
+
 /*---- 並び替え ----*/
 sortable('.js-sortable-copy', {
     forcePlaceholderSize: true,
