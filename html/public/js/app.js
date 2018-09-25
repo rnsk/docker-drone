@@ -67,6 +67,7 @@ audioFile.addEventListener('change', function () {
         // audioObj.play();
     };
     reader.readAsDataURL(this.files[0]);
+    return audioObj.src;
 }, true);
 
 document.getElementById('audioClear').addEventListener('click', function (e) {
