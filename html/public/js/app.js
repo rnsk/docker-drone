@@ -8,8 +8,7 @@
 
 var ws = null,
     wsUrl = 'ws://localhost:5005',
-    audioElem,
-    audioFile = '../files/audio.mp3';
+    audioObj = new Audio();
 
 /*---- WebSocket ----*/
 ws = new WebSocket(wsUrl);
@@ -38,34 +37,12 @@ ws.onmessage = function (message) {
     // 指示完了の信号を受け取る
 };
 
-var showController = function () {
-    document.getElementById('controller').style.display = 'block';
-};
-
-var controller = function () {
-    document.getElementById('submit').addEventListener('click', function (e) {
-        ws.send('hello');
-    });
-};
-
-/*---- 音源再生 ----*/
-audioElem = new Audio();
-audioElem.src = audioFile;
-
-document.getElementById('play').addEventListener('click', function (e) {
+document.getElementById('start').addEventListener('click', function (e) {
     if (ws && ws.readyState === WebSocket.OPEN) {
         // 再生時の処理
         ws.send('play');
     };
-    audioElem.play();
-});
-
-document.getElementById('pause').addEventListener('click', function (e) {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-        // 一時停止時の処理
-        ws.send('pause');
-    };
-    audioElem.pause();
+    audioObj.play();
 });
 
 document.getElementById('stop').addEventListener('click', function (e) {
@@ -73,9 +50,23 @@ document.getElementById('stop').addEventListener('click', function (e) {
         // 停止時の処理
         ws.send('stop');
     };
-    audioElem.pause();
-    audioElem.currentTime = 0;
+    audioObj.pause();
+    audioObj.currentTime = 0;
 });
+
+/*---- 音源再生 ----*/
+var audioFile = document.getElementById('audioFile');
+
+//　曲が選択されたら処理を実行
+audioFile.addEventListener('change', function () {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        audioObj.src = this.result;
+        // audioObj.controls = true;
+        // audioObj.play();
+    };
+    reader.readAsDataURL(this.files[0]);
+}, true);
 
 /*---- 並び替え ----*/
 sortable('.js-sortable-copy', {
