@@ -39,7 +39,7 @@ document.getElementById('start').addEventListener('click', function (e) {
     if (ws && ws.readyState === WebSocket.OPEN) {
         // 再生時の処理
         ws.send('play');
-    };
+    }
     audioObj.play();
 });
 
@@ -47,7 +47,7 @@ document.getElementById('stop').addEventListener('click', function (e) {
     if (ws && ws.readyState === WebSocket.OPEN) {
         // 停止時の処理
         ws.send('stop');
-    };
+    }
     audioObj.pause();
     audioObj.currentTime = 0;
 });
