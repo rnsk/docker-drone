@@ -86,7 +86,7 @@ audioFile.addEventListener('change', function () {
     reader.onload = function(e) {
         audioObj.src = this.result;
         audioObj.load();
-        audioObj.addEventListener('ended',function(){
+        audioObj.addEventListener('ended', function () {
             if (document.getElementById('loop').checked) {
                 this.play();
             }
