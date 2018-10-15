@@ -57,7 +57,7 @@ $ docker exec -it コンテナ名 /bin/sh
 ```shell-session
 # cd public
 # bower install --allow-root
-# node public/js/websocket.js
+# node js/websocket.js
 ```
 
 ブラウザから http://localhost:8080/ にアクセスすると、コンソールに `Socket 接続成功` と表示される
