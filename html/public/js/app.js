@@ -95,7 +95,7 @@ audioFile.addEventListener('change', function () {
 
 document.getElementById('audioClear').addEventListener('click', function (e) {
     audioObj.src = '';
-    document.getElementById('audioFile').value = '';
+    audioFile.value = '';
     e.preventDefault();
 }, false);
 
