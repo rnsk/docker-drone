@@ -18,12 +18,30 @@ var droneSumo,
 droneSumo = nodeSumo.createClient();
 
 droneSumo.connect(function () {
+    console.log('Sumo');
     droneCommand = {
-        forward: droneSumo.forward,
-        backward: droneSumo.backward,
-        right: droneSumo.right
+        'forward': forward,
+        'backward': backward,
+        'right': right,
+        'stop': stop
     };
 });
+
+var forward = function (param) {
+    droneSumo.forward(param);
+};
+
+var backward = function (param) {
+    droneSumo.backward(param);
+};
+
+var right = function (param) {
+    droneSumo.right(param);
+};
+
+var stop = function (param) {
+    droneSumo.stop(param);
+};
 
 /*---- WebSocket ---- */
 WSServer = new WebSocketServer({ port: port });
@@ -73,9 +91,16 @@ var execution = function (name, param) {
 var actionStart = function (actions) {
     for (let i = 0; i < actions.length; i++) {
         execution(actions[i].name, actions[i].param);
+        sleep(5000);
     }
 };
 
 var actionStop = function () {
     execution('stop');
 };
+
+var sleep = function (msec) {
+    var startMsec = new Date();
+    // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+    while (new Date() - startMsec < msec);
+}
